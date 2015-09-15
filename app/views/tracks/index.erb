@@ -1,0 +1,25 @@
+<div>
+  <% @tracks.each do |t| %>
+    <div class="track_box">
+      <p>Title: <%= t.title %></p>
+      <p>Author: <%= t.author %></p>
+      <p>URL: <%= t.url %>(why does this exist?)</p>
+      <p>Uploader: <%= User.find(t.user_id).username %></p>
+      <p>Upvotes: <%= Upvote.where(track_id: t.id).length %></p>
+      <% if @failure %>
+        <p><%= @failure %></p>
+      <% end %>
+      <% if session[:user_id] %>
+        <% unless Upvote.exists?(user_id: session[:user_id], track_id: t.id) %>
+          <form method="post" action="/upvote">
+            <input type="hidden" name="track_id" value=<%= t.id %>>
+            <input type="hidden" name="user_id" value=<%= session[:user_id] %>>
+            <input type="submit" value="Upvote">
+          </form>
+        <% else %>
+          <p>upvoted</p>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

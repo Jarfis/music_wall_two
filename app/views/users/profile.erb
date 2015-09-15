@@ -1,0 +1,20 @@
+<div>
+  <div>
+    <label>Username: </label><p><%= @user.username%></p>
+  </div>
+  <div>
+    <label>First name: </label><p><%= @user.fname%></p>
+    <label>Last name: </label><p><%= @user.lname%></p>
+  </div>
+  <div>
+    <ul>
+      <% unless @user_tracks.nil? %>
+        <% @user_tracks.each do |t| %>
+          <li>
+            <%= t.title %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

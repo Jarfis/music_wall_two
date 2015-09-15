@@ -1,0 +1,16 @@
+<% if @failed %>
+  <div>Incorrect username or password</div>
+<%end%>
+<form method="post" action="/users/login">
+  <div>
+    <label>username:</label>
+    <input type="text" name="username">
+  </div>
+  <div>
+    <label>password:</label>
+    <input type="text" name="password">
+  </div>
+  <div>
+    <input type="submit" value="Login">
+  </div>
+</form>
